@@ -2,8 +2,10 @@
 # Created by https://www.toptal.com/developers/gitignore/api/linux,visualstudio,c++,jetbrains,clion,visualstudiocode,redis
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,visualstudio,c++,jetbrains,clion,visualstudiocode,redis
 
-boost/
-cmake/
+library/
+*.vcxproj
+*.vcxproj.*
+*.sln
 
 ### C++ ###
 # Prerequisites
