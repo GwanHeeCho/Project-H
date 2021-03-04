@@ -24,6 +24,15 @@
     <ClCompile Include="Session.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="Packet.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Worker.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Server.h">
@@ -33,6 +42,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="Enums.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Packet.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Worker.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

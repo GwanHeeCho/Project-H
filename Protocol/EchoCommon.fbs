@@ -1,0 +1,39 @@
+table PacketHeader
+{
+	id:string;
+	token:string
+	seq:uint32;
+}
+
+
+table Profile 
+{
+
+}
+
+table PlayerInfo
+{
+
+}
+
+table Character
+{
+	
+}
+
+table Inventory
+{
+	
+}
+
+table PassiveSkill
+{
+	
+}
+
+table ActiveSKill
+{
+	
+}
+
+root_type Profile;

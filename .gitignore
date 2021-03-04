@@ -3,9 +3,6 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=linux,visualstudio,c++,jetbrains,clion,visualstudiocode,redis
 
 library/
-*.vcxproj
-*.vcxproj.*
-*.sln
 
 ### C++ ###
 # Prerequisites

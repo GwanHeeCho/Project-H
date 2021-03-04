@@ -12,9 +12,9 @@ int main()
 		std::cout << "asncy hanga server online" << std::endl;
 		io_context.run();
 	}
-	catch (std::exception& _ec)
+	catch (std::exception& errorCode)
 	{
-		std::cerr << "Exception: " << _ec.what() << "\n";
+		std::cerr << "Exception: " << errorCode.what() << "\n";
 	}
 
 	return 0;

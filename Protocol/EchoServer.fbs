@@ -1,0 +1,13 @@
+include "EchoCommon.fbs"
+
+table AccountInfo
+{
+	acky:uint64; // accountkey
+	nknm:string; // nickname
+	char:[Character]; // 보유한 캐릭터
+	ivty:[Inventory]; // 보유한 아이템
+	pssk:[PassiveSkill]; // 보유한 패시브 스킬
+	atsk:[ActiveSKill]; // 보유한 액티브 스킬
+}
+
+root_type AccountInfo;
