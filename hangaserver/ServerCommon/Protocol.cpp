@@ -37,7 +37,7 @@ bool Message::CData::decode()
 {
 	char header[HEADER + 1] = "";
 	strncat_s(header, packet, HEADER); // 패킷과 헤더를 합친다.
-	m_body_length = boost::lexical_cast<size_t>(header); // atoi
+	m_body_length = atoi(header);
 
 	// 뭉쳐진 패킷이 큰 경우
 	if (m_body_length > BODY)

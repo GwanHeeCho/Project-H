@@ -22,9 +22,9 @@ namespace Message
 		}
 	public:
 		char* data();
-		char* body();
-
 		const char* data() const;
+		
+		char* body();
 		const char* body() const;
 
 		size_t length() const;
@@ -34,7 +34,7 @@ namespace Message
 		bool decode();
 		void encode();
 	};
-	typedef std::deque<Message::CData> data_queue_ptr;
+	typedef std::deque<CData> message_ptr;
 }
 
 #endif

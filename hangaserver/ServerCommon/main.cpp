@@ -4,7 +4,7 @@
 #include <thread>
 #include "Server.h"
 
-int main()
+int _tmain(int argc, _TCHAR* argv[])
 {
 	/*
 	 * HangaServer.ini 파일에서 HANGA_SERVER 객체의 DefalutPort 라는 이름을 가진 Key의 값을 sizeof(io_port) 크기만큼의 버퍼를 생성하고 io_port에 Key의 Value를 삽입
@@ -12,35 +12,37 @@ int main()
 	 * 로드밸런싱을 위한 스케일 아웃이 필요한 경우, ini 파일 하나로 여러대의 서버를 관리하기 용이하다.
 	 */
 	TCHAR io_port[100];
-	int getServerConfig = GetPrivateProfileString(_T("HANGA_SERVER"),_T("DefalutPort"),_T("PORT1"),
-																_T(io_port), sizeof(io_port), _T(".\\HangaServer.ini"));
+	int getServerConfig = GetPrivateProfileString(_T("HANGA_SERVER"), _T("PORT"), _T(""),
+		_T(io_port), sizeof(io_port), _T(".\\..\\ServerCommon\\HangaServer.ini"));
 
 	if (getServerConfig == 0)
 	{
 		std::cout << "There is a problem with the contents of the Server Config file.";
 		return -1;
 	}
-	
+
 	try
 	{
-		boost::asio::io_context io_context;
+		boost::asio::io_service io_service;
+		Server::server_list server_list;
 		
-		Server::TCP tcpServer(io_context, std::atoi(io_port));
-
-		std::cout << "hanga server online" << std::endl;
-
-		std::thread thread1([&io_context]() { io_context.run(); });
-		std::thread thread2([&io_context]() { io_context.run(); });
+		boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::tcp::v4(), atoi(io_port));
+		Server::server_ptr server(new Server::TCPserver(io_service, endpoint));
 		
+		server_list.push_back(server);
+
+		std::cout << "hanga Server Online (" << io_port << ")" << std::endl;
+		
+		io_service.run();
+		
+		/*std::thread thread1([&io_service]() { io_service.run(); });
+		std::thread thread2([&io_service]() { io_service.run(); });
 		thread1.join();
-		thread2.join();
-		// UDP
-		// Server::UDP udpServer("127.0.0.1", "11800");
-		// udpServer.run();
+		thread2.join();*/
 	}
 	catch (std::exception& errorCode)
 	{
-		std::cerr << "Exception: " << errorCode.what() << "\n";
+		std::cerr << "Exception:` " << errorCode.what() << "\n";
 	}
 
 	return 0;

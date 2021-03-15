@@ -125,14 +125,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Packet.cpp" />
     <ClCompile Include="Protocol.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Session.cpp" />
-    <ClCompile Include="Singleton.cpp" />
     <ClCompile Include="SpinLock.cpp" />
-    <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="User.cpp" />
     <ClCompile Include="Worker.cpp" />
     <ClCompile Include="World.cpp" />
@@ -140,14 +137,11 @@
   <ItemGroup>
     <ClInclude Include="Common.h" />
     <ClInclude Include="Enums.h" />
-    <ClInclude Include="Logger.h" />
     <ClInclude Include="Packet.h" />
     <ClInclude Include="Protocol.h" />
     <ClInclude Include="Server.h" />
     <ClInclude Include="Session.h" />
-    <ClInclude Include="Singleton.h" />
     <ClInclude Include="SpinLock.h" />
-    <ClInclude Include="stdafx.h" />
     <ClInclude Include="User.h" />
     <ClInclude Include="Worker.h" />
     <ClInclude Include="World.h" />

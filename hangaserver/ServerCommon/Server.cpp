@@ -2,19 +2,26 @@
 #include <iostream>
 #include "Session.h"
 
-
-void Server::TCP::handleAccept()
+Server::TCPserver::TCPserver(boost::asio::io_service &io_service, const boost::asio::ip::tcp::endpoint &endpoint)
+	: service(io_service), acceptor(io_service, endpoint)
 {
-	// https://jacking.tistory.com/1094 : 람다를 이용해서 비동기 함수 만들기
-	tcpAcceptor.async_accept([this](boost::system::error_code errorCode, boost::asio::ip::tcp::socket tcpSocket)
+	Session::session_ptr new_session(new Session::CSession(service, world));
+	acceptor.async_accept(new_session->socket(), boost::bind(&TCPserver::handleAccept, this, new_session, boost::asio::placeholders::error));
+}
+
+void Server::TCPserver::handleAccept(Session::session_ptr session, const boost::system::error_code &errorCode)
+{
+	if (!errorCode)
 	{
-		if (!errorCode)
-		{
-			std::cout << "client join" << std::endl;
-			// https://pknam.tistory.com/14 : 객체 생성하면서 생기는 메모리와 control block을 위한 메모리를 한번에 할당 받는다.
-			// https://modoocode.com/301 : 우측값 레퍼런스 타입으로 lvalue를 대입 (생성자 안생기도록)
-			// std::make_shared<Session>(std::move(tcpSocket))->start();
-		}
-		handleAccept();
-	});
+		session->start();
+		Session::session_ptr new_session(new Session::CSession(service, world));
+
+		acceptor.async_accept(new_session->socket(),
+			boost::bind(&TCPserver::handleAccept, this, new_session, boost::asio::placeholders::error));
+
+		std::string remote_ip = session->socket().remote_endpoint().address().to_string();
+		unsigned short remote_port = session->socket().remote_endpoint().port();
+
+		std::cout << "Join to Client connected : " << remote_ip.c_str() << "(" << remote_port << ")" << std::endl;
+	}
 }
