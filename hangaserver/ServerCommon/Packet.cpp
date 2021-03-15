@@ -1,5 +1,5 @@
-#include "Packet.h"
 #include "playerinfo_generated.h"
+#include "Packet.h"
 
 void Packet::SerializationPacket()
 {

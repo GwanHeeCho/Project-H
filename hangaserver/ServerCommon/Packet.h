@@ -1,6 +1,5 @@
 #pragma once
-#include <flatbuffers/flatbuffers.h>
-
+#include "Protocol.h"
 
 class Packet
 {

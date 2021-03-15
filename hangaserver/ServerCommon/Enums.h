@@ -1,9 +1,12 @@
 #pragma once
 
+#define HEADER 4 // 구분용
+#define BODY 2048 // 실데이터
+
 // 공통
 enum ENUM_BUFFER
 {
-	BUFFER_CHAR = 1024
+	BUFFER_CHAR = 1024,
 };
 
 // 패킷 타입 정의
@@ -13,4 +16,15 @@ enum ENUM_PACKET_TYPE
 	PACKET_TYPE_LOGOUT,
 	PACKET_TYPE_REQUEST,
 	PACKET_TYPE_ANSWER,
+};
+
+// 로그 타입 정의
+enum ENUM_LOG_TYPE
+{
+	LOG_TYPE_INFO = 0,
+	LOG_TYPE_DEBUG,
+	LOG_TYPE_NORMAL,
+	LOG_TYPE_WARNING,
+	LOG_TYPE_ERROR,
+	LOG_TYPE_CRITICAL,
 };
