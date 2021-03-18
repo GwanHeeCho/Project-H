@@ -6,7 +6,8 @@ Server::TCPserver::TCPserver(boost::asio::io_service &io_service, const boost::a
 	: service(io_service), acceptor(io_service, endpoint)
 {
 	Session::session_ptr new_session(new Session::CSession(service, world));
-	acceptor.async_accept(new_session->socket(), boost::bind(&TCPserver::handleAccept, this, new_session, boost::asio::placeholders::error));
+	acceptor.async_accept(new_session->socket(),
+		boost::bind(&TCPserver::handleAccept, this, new_session, boost::asio::placeholders::error));
 }
 
 void Server::TCPserver::handleAccept(Session::session_ptr session, const boost::system::error_code &errorCode)

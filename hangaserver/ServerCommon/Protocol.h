@@ -23,7 +23,7 @@ namespace Message
 	public:
 		char* data();
 		const char* data() const;
-		
+
 		char* body();
 		const char* body() const;
 

@@ -15,6 +15,9 @@ namespace Server
 		TCPserver(boost::asio::io_service &io_service, const boost::asio::ip::tcp::endpoint &endpoint);
 		void handleAccept(Session::session_ptr session, const boost::system::error_code &errorCode);
 	};
+	// TODO : make_shared 사용하기
+	// std::make_shared<Session>(std::move(_socket))->start();
+	// typedef std::make_shared<Server::TCPserver>(std::move(m_socket))->connect();
 	typedef boost::shared_ptr<Server::TCPserver> server_ptr;
 	typedef std::list<server_ptr> server_list;
 
